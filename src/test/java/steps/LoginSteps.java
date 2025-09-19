@@ -8,16 +8,21 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 
 import io.cucumber.java.AfterAll;
+import io.cucumber.java.BeforeAll;
 import io.cucumber.java.en.*;
 
 public class LoginSteps {
     public static WebDriver driver;
 
-    @Given("the user is on the login page")
-    public void the_user_is_on_the_login_page() {
+    @BeforeAll
+    public static void setUp() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    }
+
+    @Given("the user is on the login page")
+    public void the_user_is_on_the_login_page() {
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"); // Replace with your login URL
     }
 
